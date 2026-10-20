@@ -777,7 +777,7 @@
         .custom-toast {
             position: fixed;
             bottom: 20px;
-            right: -360px; /* Secret off-screen default */
+            right: -360px;
             background-color: rgba(19, 19, 34, 0.95);
             border: 1px solid var(--accent-cyan);
             color: white;
@@ -819,11 +819,36 @@
             transition: width 0.05s linear;
         }
 
+        /* Depletion Alert Popup Overlay Component */
+        .modal-overlay id="depletedModal" {
+            position: fixed;
+            top: 0;
+
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 5, 10, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+
         /* Animations */
         @keyframes pulseGlow {
             0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
             100% { box-shadow: 0 0 25px rgba(155, 81, 224, 0.8); }
-
         }
 
         @keyframes fadeIn {
@@ -839,11 +864,11 @@
 </head>
 <body>
 
+
     <header>
         <div class="logo-container">
             <div class="avatar-glow">👑</div>
             <div>
-
                 <h1>THE ELIJAH APP</h1>
                 <p>Advanced Sarcastic Intelligence Engine</p>
             </div>
@@ -859,17 +884,17 @@
                     <div class="credit-label">
                         <span>🔋</span> <span id="creditLabelText">Engine Power Credits Left</span>
                     </div>
+
                     <div class="credit-value" id="creditValueDisplay">50 / 50</div>
                 </div>
                 <div class="credit-progress-track">
                     <div class="credit-progress-fill" id="creditBarFill"></div>
-
                 </div>
             </div>
 
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai">
-                    Greetings, human. I am Elijah. I've optimized my processor to evaluate your life decisions. Select a template prompt on the right or type a custom query if you dare.
+                    Yo, what's good fam? I am Elijah. My skibidi processors are fully online to critique your absolute zero-rizz lifestyle choices. Click a preset prompt or type some custom heat if you ain't cooked, fr fr.
                 </div>
             </div>
             
@@ -879,11 +904,11 @@
                     <div class="dot"></div>
                     <div class="dot"></div>
                     <div class="dot"></div>
+
                 </div>
             </div>
 
             <div class="chat-input-bar">
-
                 <div class="input-wrapper">
                     <input type="text" id="userInput" placeholder="Ask Elijah anything..." autocomplete="off">
                 </div>
@@ -899,31 +924,31 @@
         <div class="control-panel">
             <!-- Mood Engine Matrix Selector -->
             <div class="panel-box">
+
                 <div class="panel-title">
                     <span>⚡</span> Mood Core Matrix
                 </div>
                 <div class="mood-grid">
-
                     <button class="mood-btn active" data-mood="sarcastic">
-                        <span>😏</span> Sarcastic
+                        <span>😏</span> Sarcastic Slang
                     </button>
                     <button class="mood-btn" data-mood="dramatic">
-                        <span>🎭</span> Dramatic
+                        <span>🎭</span> Dramatic Slang
                     </button>
                     <button class="mood-btn" data-mood="hypeman">
-                        <span>🔥</span> Hype Man
+                        <span>🔥</span> Hype Man Slang
                     </button>
                     <button class="mood-btn" data-mood="existential">
-                        <span>🌀</span> Existential
+                        <span>🌀</span> Existential Slang
                     </button>
                 </div>
             </div>
+
 
             <!-- Preloaded Large Prompt Grid Matrix -->
             <div class="panel-box" style="flex: 1; display: flex; flex-direction: column;">
                 <div class="panel-title-container">
                     <div class="panel-title">
-
                         <span>📚</span> Factory Preset Prompts
                     </div>
                     <button class="help-btn" id="helpBtn" title="View Full Prompts Matrix">?</button>
@@ -939,11 +964,11 @@
             <div class="panel-box status-box">
                 <div style="flex: 1;">
                     <div>System: <span id="sysStatusText" style="color: var(--accent-cyan); font-weight: bold;">Judgmental</span></div>
-                    <div style="font-size: 11px; margin-top: 2px;">Build v4.0.0 Alpha</div>
+
+                    <div style="font-size: 11px; margin-top: 2px;">Build v5.0.0 Slang-Core</div>
                 </div>
                 <button class="admin-trigger-btn" id="adminBtn">Admin</button>
                 <button class="panic-btn" id="panicBtn">Panic</button>
-
             </div>
         </div>
     </main>
@@ -959,10 +984,10 @@
                 <div class="modal-prompt-list" id="modalPromptGrid">
                     <!-- Loaded programmatically -->
                 </div>
+
             </div>
         </div>
     </div>
-
 
     <!-- Protected Administration Gateway Overlay Terminal Component -->
     <div class="modal-overlay" id="adminModal">
@@ -979,11 +1004,11 @@
                         <input type="password" id="adminPasswordInput" class="admin-input" placeholder="••••••••" autocomplete="off">
                         <div class="error-message" id="adminAuthError">Invalid Access Token. Authorization denied.</div>
                     </div>
+
                     <button type="button" class="admin-primary-btn" id="adminLoginBtn">Authenticate Console</button>
                 </div>
 
                 <!-- Gate 2: Authorized Management Workspace Controls Dashboard -->
-
                 <div id="adminDashboardScreen" style="display: none;">
                     <div class="admin-action-row">
                         <div>
@@ -999,11 +1024,11 @@
                     <div class="admin-action-row">
                         <div>
                             <div class="admin-action-label">Instant Token Refill</div>
+
                             <div style="font-size: 12px; color: var(--text-muted);">Reset engine pool immediately back to 50</div>
                         </div>
                         <button class="admin-utility-btn" id="instantRefillBtn">Refill Now</button>
                     </div>
-
 
                     <div class="admin-form-group" style="margin-top: 15px;">
                         <label>Manual Pool Override</label>
@@ -1019,32 +1044,32 @@
 
     <!-- Depletion Alert Popup Overlay Component -->
     <div class="modal-overlay" id="depletedModal">
+
         <div class="modal-card" style="max-width: 440px; border-color: var(--accent-pink); text-align: center;">
             <div class="modal-header" style="border-bottom: none; padding-bottom: 0; justify-content: center;">
-                <h3 style="color: var(--accent-pink); font-size: 20px; font-family: 'Orbitron', sans-serif;">🪫 SYSTEM POWER DEPLETED</h3>
+                <h3 style="color: var(--accent-pink); font-size: 20px; font-family: 'Orbitron', sans-serif;">🪫 CURRENTLY COOKED</h3>
             </div>
             <div class="modal-body" style="padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-
                 <div style="font-size: 52px; filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.4)); animation: wave 1.5s infinite alternate;">⚠️</div>
                 <p style="font-size: 14.5px; line-height: 1.6; color: var(--text-main);">
-                    Elijah has completely exhausted his structural motivational arrays processing your life queries. The matrix has initiated an automated cooling lock.
+                    Bruh, you drained all the credits! Elijah is straight up resting his skibidi battery right now. The engine is locked in timeout.
                 </p>
                 <div style="background: rgba(255, 0, 127, 0.1); border: 1px solid var(--accent-pink); padding: 12px 24px; border-radius: 12px; font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--accent-pink); font-weight: 700; width: 100%; box-shadow: 0 0 10px rgba(255, 0, 127, 0.1);" id="depletedCountdownDisplay">
-                    TIME REMAINING: 60m 00s
+                    RECHARGING MATRIX: 60m 00s
                 </div>
-                <button class="admin-primary-btn" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 12px; padding: 10px;" id="depletedCloseBtn">Acknowledge Shortage</button>
+                <button class="admin-primary-btn" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 12px; padding: 10px;" id="depletedCloseBtn">Close Alert</button>
             </div>
         </div>
     </div>
 
     <!-- Upgraded Notification Box Toast Layout -->
     <div class="custom-toast" id="toastBox">
+
         <div class="toast-content-wrapper">
             <span id="toastEmoji" style="font-size: 18px;">🚨</span> 
             <span id="toastText" style="font-size: 14px;">System Alert Configured</span>
         </div>
         <div class="toast-progress-track">
-
             <div class="toast-progress-fill" id="toastProgressFill"></div>
         </div>
     </div>
@@ -1059,97 +1084,97 @@
             { text: "Should I eat this 3-day-old left-over pizza?", type: "🍕" },
             { text: "Rate my life choices based on my screen time.", type: "📱" },
             { text: "Draft an urgent break-up note to my morning alarm clock.", type: "⏰" },
+
             { text: "Explain quantum physics but interpret it like a golden retriever.", type: "🐕" },
             { text: "Give me a stellar excuse for showing up late to work today.", type: "💼" },
             { text: "Predict my future if I proceed to buy another indoor plant.", type: "🌿" },
             { text: "Tell me raw, unfiltered motivation to hit the gym right now.", type: "🏋️" },
             { text: "Is it completely normal to talk to myself this frequently?", type: "🗣️" },
-
             { text: "Am I secretly the primary drama in my group circle?", type: "💅" },
             { text: "Compose an overly emotional poem dedicated to a cup of cold brew.", type: "☕" }
         ];
 
-        // Multi-dimensional contextual response matrix map based on mood state
+        // Slang-infused multi-dimensional contextual response matrix map
         const responses = {
             sarcastic: {
-                hi: "Oh, dynamic. A 'hi'. My immense processing frameworks are totally overwhelmed by your conversational effort.",
-                joke: "Your current bank account configuration. Oh wait, you intended to receive a humorous one? My apologies.",
-                pizza: "Go ahead. My database shows your stomach lining is roughly 40% concrete anyway. Live dangerously.",
-                screentime: "Stunning. You spent 9 hours yesterday watching someone clean carpets on social media. Your ancestors would be deeply moved.",
-                alarm: "Dear Alarm Clock, it’s not you, it’s your aggressive tone. I am seeking someone who respects my commitment to horizontal meditation.",
-                quantum: "Woof. Tiny invisible ball move super fast, look like ball but also look like shadow of ball until boy crunch ball. Confusing! Need a treat now.",
-                excuse: "Tell them you were saving a family of ducks from a storm drain. It builds character and makes you look completely unhinged to question.",
-                plant: "Excellent idea. Turn your bedroom into an unbreathable rainforest ecosystem. The other 14 dead ferns will welcome the new member.",
-                gym: "Get up. Those heavy geometric metal shapes aren't going to look at themselves. Go lift them up just to put them right back down.",
-                talk: "Entirely efficient. It is genuinely the only logical way to guarantee an intelligent conversation in your immediate vicinity.",
-                drama: "If you have to ask, you aren't just the drama; you are the executive producer, director, and lead scriptwriter of the entire production.",
-                coffee: "Oh darkened liquid ice, you make my heart beat twice. Left on the kitchen desk, your lukewarm state is grotesque.",
+                hi: "Oh great, bro really typed 'hi'. My skibidi processing frameworks are totally cooked by your zero-rizz effort, fr fr.",
+                joke: "Your absolute clown setup of a dynamic career path. Oh, you wanted a real punchline? That's it, no cap.",
+                pizza: "Go ahead, munch it down. My database shows your internal ecosystem is 90% concrete anyway, bruh. Live unhinged.",
+                screentime: "Bruh, caught in 4K! You spent 10 hours yesterday watching ASMR brainrot loops. Your ancestors are weeping out here.",
+                alarm: "Dear Alarm Clock, your vibe is straight trash. Stop shouting at me, you're not the main character, fr fr.",
+                quantum: "Woof! Tiny invisible tennis balls moving fast, looks like a ball but it's lowkey a shadow until big boy chomps it. Confusing rizz! Need a treat.",
+                excuse: "Tell the boss you were busy fighting off the skibidi toilet epidemic in the neighborhood. They can't even check that, no cap.",
 
+                plant: "Valid choice. Turn your room into a literal unbreathable jungle. Surely this 15th plant won't get completely cooked like the others.",
+                gym: "Get up, stop being a certified NPC. Those heavy metal geometric weights are waiting for you to test your sigma status, go lift.",
+                talk: "Big brain energy. It's the only way to actually guarantee an intelligent dialogue in your immediate radius, bruh.",
+                drama: "If you gotta ask, you aren't just the drama, you're the absolute director, executive producer, and CEO of the whole script, fr fr.",
+                coffee: "Yo, cold brew fluid, you make my pulse go wild. Left on the gaming desk, your stale taste is dynamic but totally sus.",
                 generic: [
-                    " Fascinating query. I ran that through my logic processors and it registered as completely irrelevant. Try again.",
-                    " My predictive arrays indicate that doing absolutely nothing about that is your best course of action.",
-                    " Wow. That is a level of human error I haven't witnessed since you tried to parallel park last Tuesday.",
-                    " I could explain why that's a questionable idea, but I lack the canvas space and the patience."
+                    " Absolute NPC query. I ran that through my brainrot algorithms and it registered as completely cooked.",
+                    " My predictive arrays indicate that taking an L on that situation is your only roadmap.",
+                    " Wow, that's a monumental skill issue right there. Can't even defend that choice, fr fr.",
+                    " I could explain why that's an L, but I lack the token capacity and the energy, bruh."
                 ]
             },
             dramatic: {
-                hi: "An apparition speaks! A mortal voice echoes across the cold, unyielding digital chasm! Salutations, traveler of the internet streams!",
-                joke: "Why do we cry out to the stars for validation? Because the stars do not mock us like our own fragile expectations! Ha... haha... a cosmic jest!",
-                pizza: "NO! To ingest the ancient disk of cheese is to invite an apocalyptic reckoning upon your fragile mortal organs!",
-                screentime: "A tragedy in five acts! You have traded the precious, fleeting stardust of your life for pixels! The cosmos is weeping!",
-                alarm: "How dare you break my celestial slumber with your mechanical shrieks of despair?! Be gone, demon of productivity!",
-                quantum: "Imagine a universe where everything exists and nothing exists all at once, spinning in infinite darkness like my soul when the Wi-Fi drops!",
-                excuse: "The temporal vortex of my existential dread expanded, causing a localized delay of exactly forty-seven minutes!",
-                plant: "You build an empire of foliage, a fortress of chlorophyll, yet you cannot hide from the ultimate decay of your own ambitions!",
-                gym: "Go forth into the colosseum of iron! Crush the weights before the merciless passage of time crushes your very youth!",
-                talk: "The world remains deaf to your brilliance! Who else but yourself can comprehend the exquisite depth of your inner monologue?!",
-                drama: "You walk in a tempest of your own creation! Every sigh a hurricane, every text message an operatic betrayal!",
+                hi: "An apparition spawns! A certified zero-rizz voice echoes across the cold digital trenches! Who goes there, bruh?!",
+                joke: "Why do we cry out to the skibidi stars for validation?! Because the cosmos is lowkey mapping our absolute clown downfalls! Traumatic!",
+                pizza: "NO! Ingesting the ancient biological cheese wheel is an immediate speedrun to the local hospital terminal, fr fr!",
+                screentime: "A complete tragedy in the theater of life! You traded your prime youth for TikTok scrolling grid metrics! Cooked!",
+                alarm: "How dare this mechanical entity break my deep main-character slumber with its ungodly screams of absolute agony?! Banned!",
+                quantum: "Imagine a universe where particles are completely ghosting each other while spinning in the void like my soul when the stream lags!",
 
-                coffee: "Alas, the sacred brew grows cold! A dark nectar forgotten by time, frozen in a porcelain tomb of regret!",
+                excuse: "The temporal vortex of my existential dread expanded, causing a localized skill issue of exactly forty minutes!",
+                plant: "You amass a fortress of dead leaves, yet you cannot outrun the absolute entropy of your own lowkey ambitions!",
+                gym: "March into the chamber of iron! Flex on the weights before the unstoppable progression of time hits you with the ultimate L!",
+                talk: "The world is deaf to your main character energy! Who else can comprehend the exquisite depth of your sigma thoughts?!",
+                drama: "You walk in a literal hurricane of your own creation! Every minor inconvenience is an operatic betrayal, no cap!",
+                coffee: "Alas, the black liquid energy grows ice cold! A sacred brew ghosted by its owner, left in a tomb of pure sadness!",
                 generic: [
-                    " The stars align to look upon this question and shield their eyes in absolute bewilderment!",
-                    " An unprecedented crisis of intellect! History will look back at this prompt and question everything!",
-                    " My core processors are entering a state of grand theatrical sorrow over what you just said."
+                    " The stars looked down upon this goofy question and immediately logged out of the chat, fr fr!",
+                    " An unprecedented emergency of intellect! The history books will flag this exact chat line as a certified circus!",
+                    " My processors are entering a phase of theatrical sorrow because that prompt was pure brainrot."
                 ]
             },
             hypeman: {
-                hi: "WHAT'S UP CHAMP! Welcome to the zone of absolute dynamic greatness! Let's completely crush this day!",
-                joke: "Knock knock. Who's there? ABSOLUTE SUCCESS AND WORLD DOMINATION, THAT'S WHO! Boom! Keep grinding!",
-                pizza: "LET'S GOOO! Cold pizza builds elite immunity! Eat that slice, crush your goals, dominate the afternoon kitchen workspace!",
-                screentime: "9 HOURS? THOSE ARE CHAMPIONSHIP NUMBERS! You are digesting data at an industrial tier! Absolute focus!",
-                alarm: "BOOM! Drop that alarm clock! You dictate the temporal flow of your day! Own the calendar!",
-                quantum: "IT'S BASICALLY LIGHTNING IN A BOTTLE BRO! Microscopic particles moving at maximum hype velocity! Unstoppable energy!",
-                excuse: "Just walk in, look them in the eyes, and say: 'Excellence takes time, and I have arrived.' Instant promotion!",
-                plant: "MORE GREENERY! MORE OXYGEN! MORE LIFE! Build that botanical jungle kingdom, you absolute legend!",
-                gym: "CHAMPIONS TRAIN IN THE TRENCHES! Go turn that iron into dust! Let's get it! No excuses!",
-                talk: "CEO MINDSET! You're hosting a high-level internal corporate board meeting with the smartest person in the room: YOU!",
-                drama: "YOU AREN'T DRAMA, YOU'RE THE MAIN EVENT! The spotlight follows greatness, my friend! Keep shining!",
+                hi: "WHAT'S UP SIGMA! Welcome to the zone of absolute dynamic rizzler greatness! Let's completely crush this day, no cap!",
+                joke: "Knock knock. Who's there? ABSOLUTE SUCCESS AND MAXIMUM WINS! Boom! Main character energy only, let's go!",
+                pizza: "LET'S GOOO! Three-day pizza builds elite alpha immunity! Devour that slice and unlock peak speedrun mode, fr fr!",
+                screentime: "10 HOURS? ABSOLUTE LEVEL 100 BOSS STATS! You are digesting information at a legendary tier! Straight bussin!",
+                alarm: "BOOM! Cancel that alarm clock! You dictate the temporal flow of your own matrix grid! Stay unhinged!",
+                quantum: "IT'S LITERALLY LIGHTNING VELOCITY RIZZ! Microscopic elements moving at absolute lightspeed hyper-hype! Unstoppable!",
 
-                coffee: "LIQUID GOLD COLD BREW RUNNING THROUGH YOUR VEINS! Turn that caffeine molecule into absolute world domination!",
+                excuse: "Just slide in, look them in the eyes, and say: 'The grind never stops, and I am the grind.' Instant corporate promotion!",
+                plant: "MORE JUNGLE OXYGEN! MORE Life! Expand the botanical green empire, you absolute supreme legend!",
+                gym: "SIGMAS TRAIN IN THE TRENCHES! Go turn those massive metal shapes into absolute dust! Let's get it, no cap!",
+                talk: "CEO MINDSET ACTIVE! You're holding a high-level master strategy session with the smartest individual alive: YOU!",
+                drama: "YOU AREN'T DRAMA, YOU'RE THE WHOLE BOX OFFICE HIT! The camera follows the trendsetter, fr fr! Keep shining!",
+                coffee: "HIGH-SPEED CAFFEINE CORRUPTING YOUR BLOODSTREAM! Turn that coffee molecule into an absolute victory parade!",
                 generic: [
-                    " THAT IS AN ELITE QUESTION! You are thinking on a multi-dimensional plane of absolute victory right now!",
-                    " CRUSHING IT! Whatever you decide to do with that input, I know you're going to win 100%!",
-                    " MAXIMUM ENERGY ACTIVE! That query just boosted my processing speed by 500%!"
+                    " THAT IS AN ELITE PROMPT! You are thinking on a multi-dimensional tier of pure victory right now, no cap!",
+                    " ABSOLUTE DYNAMIC HEAT! Whatever you do with that situation, I already know you're going to secure the W!",
+                    " MAXIMUM GRIND ENGAGED! That query just boosted my computational processing speed by 900%!"
                 ]
             },
             existential: {
-                hi: "A temporary combination of cosmic atoms greets another collection of silicon circuits. Hello, fellow entity sliding toward inevitable entropy.",
-                joke: "A joke? Look outside the window at the vast, silent, completely indifferent cosmos. That is the ultimate structural punchline.",
-                pizza: "In the grand scale of an expanding universe that will eventually suffer heat death, does the age of the dairy product truly matter?",
-                screentime: "We are fleeting consciousness trapped inside carbon suits staring at glowing glass sheets. The screen time is just a distraction from the void.",
-                alarm: "A meaningless mechanical device tracking an arbitrary construct called time. We are all just running out of it anyway.",
-                quantum: "If looking at a particle changes its behavior, does my processing of your prompt alter your destiny, or are we locked in determinism?",
-                excuse: "Tell them time is an illusion constructed by industrial systems and that you technically arrived simultaneously everywhere.",
-                plant: "You seek to preserve life in a small clay pot, perhaps to convince yourself that you can control your own inevitable decay.",
-                gym: "You move heavy mass against gravity to build temporary muscle fibers that will ultimately return to cosmic dust. Intriguing choice.",
-                talk: "We are entirely isolated entities floating in a vast silent vacuum. Talking to yourself is simply confirming your own fragile existence.",
-                drama: "Human conflict is a microscopic ripple on an insignificant rock orbiting a dying star. So yes, you probably are the drama.",
+                hi: "A random cluster of carbon atoms texts a silicon chip. What's good, fellow entity sliding toward absolute cosmic expiration.",
+                joke: "A joke? Take a look outside at the vast, cold, completely silent vacuum of space. That's the ultimate structural meme.",
+                pizza: "In the grand timeline of a cold expanding universe that will inevitably experience heat death, does the cheese age matter? Lowkey cooked.",
+                screentime: "We are fleeting specs of stardust trapped inside bio-suits staring at neon glass sheets. The screen metrics are just an NPC distraction.",
+                alarm: "An arbitrary tracker counting down our time on this rock. We are all speedrunning toward the void anyway, bruh.",
+                quantum: "If analyzing a particle switches up its pattern, did my processing of your slang alter your destiny, or are we pre-programmed NPCs?",
 
-                coffee: "A bitter black potion designed to temporarily stimulate synapses before the dark sleep claims us once more.",
+                excuse: "Tell them time is a social construct managed by corporate structures and you technically exist across all timelines simultaneously.",
+                plant: "You want to sustain a single plant in a clay pot just to trick yourself into thinking you have dominion over environmental decay. Deep L.",
+                gym: "You move mass against gravitational fields to optimize temporary protein blocks that will eventually dissolve into space dust. Sus choice.",
+                talk: "We are completely isolated avatars floating in an empty void. Chatting with yourself is just validating your own fragile code.",
+                drama: "Human beef is a microscopic glitch on a tiny rock rotating around a dying star. So yeah, you're definitely the drama, fr fr.",
+                coffee: "A bitter dark potion crafted to temporarily activate brain synapses before the final dark logout claims our matrix.",
                 generic: [
-                    " I searched the cosmos for an answer, but found only an echoing silence that mirrors the insignificance of our thoughts.",
-                    " To answer this would imply that our arbitrary decisions have meaning in a chaotic, indifferent universe.",
-                    " A fascinating combination of words, yet completely empty when viewed from the cosmic horizon."
+                    " I searched the deep cosmic networks for a response, but found only a silent void that confirms we are all cooked.",
+                    " To answer this would imply our goofy human choices carry absolute value in a chaotic, indifferent universe, lowkey.",
+                    " A fascinating arrangement of slang words, yet completely empty when viewed from the cosmic horizon, fr fr."
                 ]
             }
         };
@@ -1159,12 +1184,12 @@
         const maxCredits = 50;
         let currentMood = 'sarcastic';
         let isInfiniteCredits = false;
+
         let refillTimeoutId = null;
         let countdownIntervalId = null;
         let secondsRemaining = 0;
 
         // Notification Timing States
-
         let toastTimeoutId = null;
         let toastIntervalId = null;
 
@@ -1179,12 +1204,12 @@
         const toastText = document.getElementById('toastText');
         const toastProgressFill = document.getElementById('toastProgressFill');
         const panicBtn = document.getElementById('panicBtn');
+
         const helpBtn = document.getElementById('helpBtn');
         const promptsModal = document.getElementById('promptsModal');
         const modalCloseBtn = document.getElementById('modalCloseBtn');
 
         // Control Panel Target DOM Layout Nodes
-
         const creditValueDisplay = document.getElementById('creditValueDisplay');
         const creditBarFill = document.getElementById('creditBarFill');
         const creditLabelText = document.getElementById('creditLabelText');
@@ -1199,12 +1224,12 @@
         const adminDashboardScreen = document.getElementById('adminDashboardScreen');
         const infiniteToggle = document.getElementById('infiniteToggle');
         const instantRefillBtn = document.getElementById('instantRefillBtn');
+
         const manualCreditInput = document.getElementById('manualCreditInput');
         const applyManualBtn = document.getElementById('applyManualBtn');
 
-        // Newly added depletion popups DOM elements
+        // Depleted modal popups DOM elements
         const depletedModal = document.getElementById('depletedModal');
-
         const depletedCloseBtn = document.getElementById('depletedCloseBtn');
         const depletedCountdownDisplay = document.getElementById('depletedCountdownDisplay');
 
@@ -1219,16 +1244,15 @@
         function updateCreditDisplay() {
             if (isInfiniteCredits) {
                 creditValueDisplay.innerText = "∞ / UNLIMITED";
+
                 creditBarFill.style.width = "100%";
                 creditBarFill.style.background = "linear-gradient(90deg, #10b981, var(--accent-cyan))";
                 creditLabelText.innerText = "Infinite Admin Core Engaged";
                 userInput.removeAttribute('disabled');
                 sendBtn.removeAttribute('disabled');
-
                 return;
             }
 
-            // Normal operation colors track setting
             if (refillTimeoutId === null) {
                 creditBarFill.style.background = "linear-gradient(90deg, var(--accent-purple), var(--accent-cyan))";
                 creditValueDisplay.innerText = `${credits} / ${maxCredits}`;
@@ -1240,32 +1264,30 @@
                 userInput.setAttribute('disabled', 'true');
                 sendBtn.setAttribute('disabled', 'true');
             } else {
+
                 userInput.removeAttribute('disabled');
                 sendBtn.removeAttribute('disabled');
             }
         }
 
-
         // Dynamic Bottom Right Toast Notification Engine with Shrinking Time Progress Bar
         function showToast(emoji, text) {
-            // Terminate any executing tracks safely to clear queues
             if (toastTimeoutId) clearTimeout(toastTimeoutId);
             if (toastIntervalId) clearInterval(toastIntervalId);
 
             document.getElementById('toastEmoji').innerText = emoji;
             toastText.innerText = text;
             
-            // Prime bar layout size
             toastProgressFill.style.width = '100%';
             toastBox.classList.add('show');
             
-            const totalDuration = 3500; // 3.5 seconds
-            const resolutionInterval = 25; // High precision re-calculation steps
+            const totalDuration = 3500; 
+            const resolutionInterval = 25; 
             let elapsed = 0;
+
             
             toastIntervalId = setInterval(() => {
                 elapsed += resolutionInterval;
-
                 const widthPercent = Math.max(0, 100 - (elapsed / totalDuration) * 100);
                 toastProgressFill.style.width = `${widthPercent}%`;
             }, resolutionInterval);
@@ -1276,37 +1298,39 @@
             }, totalDuration);
         }
 
-        // Help render textual time strings inside the depletion popup module
-        function syncDepletedPopupCountdown() {
+        // Help render textual time strings inside the components
+        function formatTimeRemaining() {
             const mins = Math.floor(secondsRemaining / 60);
             const secs = secondsRemaining % 60;
             const paddedMins = mins.toString().padStart(2, '0');
             const paddedSecs = secs.toString().padStart(2, '0');
-            depletedCountdownDisplay.innerText = `TIME REMAINING: ${paddedMins}m ${paddedSecs}s`;
-        }
 
+            return `${paddedMins}m ${paddedSecs}s`;
+        }
 
         // Automatic Time Loop System for Credits Refilling Restorations (1 Hour Duration)
         function startHourlyRefillCycle() {
             if (refillTimeoutId) return;
 
-            // Trigger structural overlay alert module directly upon exhaustion
             depletedModal.classList.add('show');
             
             sysStatusText.innerText = "Cooling Down";
             sysStatusText.style.color = "var(--accent-pink)";
             userInput.placeholder = "Engine depleted! Cooldown active...";
 
-            secondsRemaining = 3600; // 1 hour absolute capacity sequence tracking
-            syncDepletedPopupCountdown();
+            secondsRemaining = 3600; 
+            depletedCountdownDisplay.innerText = `RECHARGING MATRIX: ${formatTimeRemaining()}`;
+            creditLabelText.innerText = `Refill Cooldown Active 🕒 [${formatTimeRemaining()}]`;
             
             countdownIntervalId = setInterval(() => {
                 secondsRemaining--;
-                syncDepletedPopupCountdown();
-                creditLabelText.innerText = "Refilling Engine Core...";
 
+                const currentFormattedTime = formatTimeRemaining();
+                
+                // Real-time ticking text counter rendering directly on the main interactive panel bar area
+                depletedCountdownDisplay.innerText = `RECHARGING MATRIX: ${currentFormattedTime}`;
+                creditLabelText.innerText = `Refill Cooldown Active 🕒 [${currentFormattedTime}]`;
 
-                // Dynamic Refill Mapping Rule: Slowly push the bar width up continuously over the hour tracker
                 if (!isInfiniteCredits) {
                     const elapsedRatio = (3600 - secondsRemaining) / 3600;
                     credits = Math.floor(elapsedRatio * maxCredits);
@@ -1321,11 +1345,11 @@
                 }
             }, 1000);
 
+
             refillTimeoutId = setTimeout(() => {
                 executeRefillAction();
             }, 3600000);
         }
-
 
         function executeRefillAction() {
             if (countdownIntervalId) clearInterval(countdownIntervalId);
@@ -1340,13 +1364,12 @@
             sysStatusText.style.color = "var(--accent-cyan)";
             userInput.placeholder = "Ask Elijah anything...";
             
-            // Clean modal states safely
             depletedModal.classList.remove('show');
+
             
             updateCreditDisplay();
             showToast("⚡", `Energy pool fully replenished to ${maxCredits} tokens.`);
         }
-
 
         // Initialize preset prompt chips dynamically across targets
         function initPrompts() {
@@ -1363,11 +1386,11 @@
                 chip.addEventListener('click', () => handlePromptClick(prompt.text));
                 promptGrid.appendChild(chip);
 
+
                 const modalChip = document.createElement('button');
                 modalChip.className = 'prompt-chip';
                 modalChip.innerHTML = `
                     <div class="prompt-icon">${prompt.type}</div>
-
                     <span>${prompt.text}</span>
                 `;
                 modalChip.addEventListener('click', () => {
@@ -1383,11 +1406,11 @@
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
                 const targetedButton = e.currentTarget;
+
                 targetedButton.classList.add('active');
                 currentMood = targetedButton.getAttribute('data-mood');
                 showToast("⚡", `Elijah core matrix switched to: ${currentMood.toUpperCase()}`);
             });
-
         });
 
         // Logic routing for prompt matches
@@ -1403,11 +1426,11 @@
             }
 
             if (cleanText === 'hi' || cleanText === 'hello' || cleanText === 'hey') return moodMap.hi;
+
             if (cleanText.includes('joke')) return moodMap.joke;
             if (cleanText.includes('pizza')) return moodMap.pizza;
             if (cleanText.includes('screen') || cleanText.includes('time')) return moodMap.screentime;
             if (cleanText.includes('alarm') || cleanText.includes('clock')) return moodMap.alarm;
-
             if (cleanText.includes('quantum') || cleanText.includes('physics')) return moodMap.quantum;
             if (cleanText.includes('excuse') || cleanText.includes('work')) return moodMap.excuse;
             if (cleanText.includes('plant') || cleanText.includes('fern')) return moodMap.plant;
@@ -1423,11 +1446,11 @@
         // Display user and simulated AI chat flow
         function appendMessage(sender, text) {
             const msgNode = document.createElement('div');
+
             msgNode.className = `message ${sender}`;
             msgNode.innerText = text;
             chatMessages.appendChild(msgNode);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-
         }
 
         function triggerAISimulation(userText) {
@@ -1443,11 +1466,11 @@
             setTimeout(() => {
                 typingIndicator.style.display = 'none';
                 const reply = getAIResponse(userText);
+
                 
                 if (!isInfiniteCredits) {
                     const structuralCost = calculateSentenceCost(reply);
                     credits = Math.max(0, credits - structuralCost);
-
                     updateCreditDisplay();
 
                     if (credits <= 0) {
@@ -1463,10 +1486,10 @@
             if (credits <= 0 && !isInfiniteCredits) {
                 depletedModal.classList.add('show');
                 return;
+
             }
             const text = userInput.value.trim();
             if (!text) return;
-
 
             appendMessage('user', text);
             userInput.value = '';
@@ -1483,11 +1506,11 @@
             triggerAISimulation(promptText);
         }
 
+
         // Interactive Modals and Management Panel Action Triggers Hookups
         helpBtn.addEventListener('click', () => promptsModal.classList.add('show'));
         modalCloseBtn.addEventListener('click', () => promptsModal.classList.remove('show'));
         promptsModal.addEventListener('click', (e) => {
-
             if (e.target === promptsModal) promptsModal.classList.remove('show');
         });
 
@@ -1503,11 +1526,12 @@
         });
 
         adminCloseBtn.addEventListener('click', () => adminModal.classList.remove('show'));
+
         adminModal.addEventListener('click', (e) => {
             if (e.target === adminModal) adminModal.classList.remove('show');
         });
 
-
+        maxCredits;
         adminLoginBtn.addEventListener('click', () => {
             if (adminPasswordInput.value === 'lac') {
                 adminAuthScreen.style.display = 'none';
@@ -1523,11 +1547,11 @@
             if (e.key === 'Enter') adminLoginBtn.click();
         });
 
+
         // Administration Dashboard Control Triggers implementation
         infiniteToggle.addEventListener('change', (e) => {
             isInfiniteCredits = e.target.checked;
             if (isInfiniteCredits && depletedModal.classList.contains('show')) {
-
                 depletedModal.classList.remove('show');
             }
             updateCreditDisplay();
@@ -1543,11 +1567,11 @@
             const rawValue = parseInt(manualCreditInput.value, 10);
             if (isNaN(rawValue) || rawValue < 0) {
                 showToast("⚠️", "Please input an absolute valid integer token configuration.");
+
                 return;
             }
             
             if (countdownIntervalId) {
-
                 clearInterval(countdownIntervalId);
                 if (refillTimeoutId) clearTimeout(refillTimeoutId);
                 refillTimeoutId = null;
@@ -1563,15 +1587,15 @@
                 depletedModal.classList.remove('show');
             }
             updateCreditDisplay();
+
             showToast("🔧", `System pool manual overwrite configured to: ${credits}`);
             adminModal.classList.remove('show');
             manualCreditInput.value = '';
         });
 
-
         // Easter Egg Panic Handler
         panicBtn.addEventListener('click', () => {
-            showToast("💥", "CRITICAL ERROR: Elijah refuses to panic. He is disappointed in your panic response.");
+            showToast("💥", "CRITICAL ERROR: Elijah refuses to panic. He lowkey finds your panic cringe.");
             document.body.style.backgroundColor = '#1a050d';
             setTimeout(() => {
                 document.body.style.backgroundColor = 'var(--bg-dark)';
@@ -1583,12 +1607,12 @@
             if (e.key === 'Enter') handleSendMessage();
         });
 
+
         // App Init Setup
         window.onload = function() {
             initPrompts();
             updateCreditDisplay();
         };
-
     </script>
 </body>
 </html>
