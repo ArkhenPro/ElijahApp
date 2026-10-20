@@ -21,6 +21,7 @@
             --user-bubble: #1e1b4b;
 
             --ai-bubble: #1f2937;
+            --success-green: #10b981;
         }
 
         * {
@@ -38,8 +39,8 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
-        }
 
+        }
 
         /* Top Navigation/Header */
         header {
@@ -58,8 +59,8 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-        }
 
+        }
 
         .avatar-glow {
             width: 45px;
@@ -78,9 +79,9 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 24px;
             font-weight: 900;
+
             background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
             -webkit-background-clip: text;
-
             -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
         }
@@ -98,9 +99,9 @@
             flex: 1;
             max-width: 1200px;
             width: 100%;
+
             margin: 0 auto;
             padding: 20px;
-
             display: grid;
             grid-template-columns: 1fr 380px;
             gap: 20px;
@@ -118,9 +119,9 @@
         /* Left Side: Chat Workspace */
         .chat-container {
             background-color: var(--panel-bg);
+
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -134,13 +135,62 @@
             }
         }
 
+        /* Credits Token Meter Element */
+        .credit-meter-bar {
+            background-color: rgba(10, 10, 18, 0.6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+            padding: 12px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .credit-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+
+        .credit-label {
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+        }
+
+        .credit-value {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-cyan);
+        }
+
+        .credit-progress-track {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .credit-progress-fill {
+            height: 100%;
+            width: 100%;
+
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            border-radius: 4px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .chat-messages {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-
             gap: 16px;
             scroll-behavior: smooth;
         }
@@ -149,6 +199,7 @@
             max-width: 80%;
             padding: 14px 18px;
             border-radius: 16px;
+
             font-size: 15px;
             line-height: 1.5;
             animation: fadeIn 0.3s ease-out forwards;
@@ -160,7 +211,6 @@
             align-self: flex-end;
             border-bottom-right-radius: 4px;
             border-left: 3px solid var(--accent-purple);
-
         }
 
         .message.ai {
@@ -169,6 +219,7 @@
             align-self: flex-start;
             border-bottom-left-radius: 4px;
             border-left: 3px solid var(--accent-cyan);
+
         }
 
         /* Typing Indicator */
@@ -181,13 +232,13 @@
             border-bottom-left-radius: 4px;
         }
 
-
         .dots {
             display: flex;
             gap: 5px;
             align-items: center;
             height: 20px;
         }
+
 
         .dot {
             width: 8px;
@@ -201,7 +252,6 @@
 
         /* Input Controls Panel */
         .chat-input-bar {
-
             padding: 15px;
             background-color: rgba(10, 10, 18, 0.5);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -209,6 +259,7 @@
             gap: 10px;
             align-items: center;
         }
+
 
         .input-wrapper {
             position: relative;
@@ -221,7 +272,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 14px 20px;
             border-radius: 30px;
-
             color: white;
             font-size: 15px;
             outline: none;
@@ -230,7 +280,15 @@
 
         .chat-input-bar input:focus {
             border-color: var(--accent-cyan);
+
             box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        .chat-input-bar input:disabled {
+            background-color: rgba(255, 0, 127, 0.05);
+            border-color: rgba(255, 0, 127, 0.2);
+            color: var(--accent-pink);
+            cursor: not-allowed;
         }
 
         .send-btn {
@@ -241,8 +299,8 @@
             border-radius: 50%;
             cursor: pointer;
             display: flex;
-
             align-items: center;
+
             justify-content: center;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
@@ -253,15 +311,21 @@
             box-shadow: 0 4px 20px rgba(155, 81, 224, 0.5);
         }
 
+        .send-btn:disabled {
+            background: #232338;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
         .send-btn svg {
             width: 20px;
             height: 20px;
+
             fill: white;
             margin-left: 2px;
         }
 
         /* Right Side: Matrix Controls & Prompts Grid */
-
         .control-panel {
             display: flex;
             flex-direction: column;
@@ -277,11 +341,11 @@
             padding: 20px;
         }
 
+
         .panel-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 14px;
             text-transform: uppercase;
-
             letter-spacing: 1px;
             margin-bottom: 15px;
             color: var(--accent-cyan);
@@ -298,10 +362,10 @@
             margin-bottom: 15px;
         }
 
+
         .panel-title-container .panel-title {
             margin-bottom: 0;
         }
-
 
         .help-btn {
             background: rgba(0, 242, 254, 0.1);
@@ -318,11 +382,11 @@
             justify-content: center;
             font-size: 14px;
             transition: all 0.2s ease;
+
             box-shadow: 0 0 8px rgba(0, 242, 254, 0.2);
         }
 
         .help-btn:hover {
-
             background: var(--accent-cyan);
             color: var(--bg-dark);
             box-shadow: 0 0 12px var(--accent-cyan);
@@ -338,11 +402,11 @@
 
         .mood-btn {
             background-color: rgba(255, 255, 255, 0.03);
+
             border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 12px;
             border-radius: 12px;
             color: var(--text-muted);
-
             cursor: pointer;
             font-size: 13px;
             font-weight: 600;
@@ -358,10 +422,10 @@
         }
 
         .mood-btn:hover {
+
             background-color: rgba(255, 255, 255, 0.08);
             color: var(--text-main);
         }
-
 
         .mood-btn.active {
             background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(155, 81, 224, 0.15));
@@ -372,17 +436,17 @@
 
         /* Massive Prompt Grid Workspace */
         .prompts-scroll-container {
-            max-height: 380px;
+            max-height: 320px;
             overflow-y: auto;
             padding-right: 5px;
         }
 
         .prompts-scroll-container::-webkit-scrollbar {
+
             width: 4px;
         }
         .prompts-scroll-container::-webkit-scrollbar-thumb {
             background-color: rgba(255,255,255,0.1);
-
             border-radius: 4px;
         }
 
@@ -398,11 +462,11 @@
             padding: 12px 14px;
             border-radius: 12px;
             font-size: 13.5px;
+
             text-align: left;
             color: var(--text-main);
             cursor: pointer;
             transition: all 0.2s ease;
-
             display: flex;
             align-items: center;
             gap: 10px;
@@ -418,11 +482,11 @@
         .prompt-icon {
             background-color: rgba(255, 255, 255, 0.05);
             width: 24px;
+
             height: 24px;
             border-radius: 6px;
             display: flex;
             align-items: center;
-
             justify-content: center;
             font-size: 12px;
             flex-shrink: 0;
@@ -438,11 +502,11 @@
             background-color: rgba(5, 5, 10, 0.85);
             backdrop-filter: blur(8px);
             display: flex;
+
             align-items: center;
             justify-content: center;
             z-index: 100;
             opacity: 0;
-
             pointer-events: none;
             transition: opacity 0.3s ease;
             padding: 20px;
@@ -458,11 +522,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 24px;
             max-width: 550px;
+
             width: 100%;
             max-height: 80vh;
             display: flex;
             flex-direction: column;
-
             overflow: hidden;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
             transform: scale(0.95);
@@ -478,11 +542,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
+
             align-items: center;
         }
 
         .modal-header h3 {
-
             font-family: 'Orbitron', sans-serif;
             font-size: 16px;
             color: var(--accent-cyan);
@@ -499,10 +563,10 @@
             transition: color 0.2s;
         }
 
+
         .modal-close:hover {
             color: var(--accent-pink);
         }
-
 
         .modal-body {
             padding: 20px;
@@ -516,15 +580,157 @@
             gap: 10px;
         }
 
+        /* Admin Terminal Forms Design */
+        .admin-form-group {
+            margin-bottom: 16px;
+
+        }
+
+        .admin-form-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-input {
+            width: 100%;
+            background-color: #0d0d1a;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: white;
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        .admin-input:focus {
+            border-color: var(--accent-purple);
+        }
+
+        .admin-primary-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            box-shadow: 0 4px 15px rgba(0,242,254,0.2);
+        }
+
+        .admin-primary-btn:hover {
+            opacity: 0.95;
+            box-shadow: 0 4px 20px rgba(155,81,224,0.4);
+        }
+
+        .admin-action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255,255,255,0.02);
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 12px;
+        }
+
+
+        .admin-action-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Toggle switches stylings */
+        .switch-container {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+
+        .switch-container input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #232338;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+
+        }
+
+        input:checked + .slider {
+            background-color: var(--success-green);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        .admin-utility-btn {
+            background-color: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+
+            transition: all 0.2s;
+        }
+
+        .admin-utility-btn:hover {
+            background-color: var(--accent-cyan);
+            color: var(--bg-dark);
+        }
+
+        .error-message {
+            color: var(--accent-pink);
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 8px;
+            text-align: center;
+            display: none;
+        }
+
         /* Status & Easter Eggs Box */
         .status-box {
+
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 12px;
             color: var(--text-muted);
-
             margin-top: auto;
+            gap: 10px;
         }
 
         .panic-btn {
@@ -537,44 +743,87 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+
             transition: all 0.2s ease;
         }
 
         .panic-btn:hover {
             background-color: var(--accent-pink);
             color: white;
-
             box-shadow: 0 0 15px var(--accent-pink);
         }
 
-        /* Custom Notification Toast instead of alert() */
+        .admin-trigger-btn {
+            background-color: rgba(155, 81, 224, 0.1);
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+
+            transition: all 0.2s ease;
+        }
+
+        .admin-trigger-btn:hover {
+            background-color: var(--accent-purple);
+            color: white;
+            box-shadow: 0 0 15px var(--accent-purple);
+        }
+
+        /* Premium Bottom-Right Notification Toast UI Component */
         .custom-toast {
             position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--accent-pink);
+            bottom: 20px;
+            right: -360px; /* Secret off-screen default */
+            background-color: rgba(19, 19, 34, 0.95);
+            border: 1px solid var(--accent-cyan);
             color: white;
-            padding: 14px 24px;
-            border-radius: 30px;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(255, 0, 127, 0.4);
-            z-index: 100;
-            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
+            border-radius: 14px;
+            font-weight: 600;
 
-            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.2);
+            z-index: 200;
+            transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            width: 320px;
+            backdrop-filter: blur(12px);
         }
 
         .custom-toast.show {
-            bottom: 30px;
+            right: 20px;
+        }
+
+        .toast-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+
+        }
+
+        .toast-progress-track {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .toast-progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            transition: width 0.05s linear;
         }
 
         /* Animations */
         @keyframes pulseGlow {
             0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.5); }
             100% { box-shadow: 0 0 25px rgba(155, 81, 224, 0.8); }
+
         }
 
         @keyframes fadeIn {
@@ -583,7 +832,6 @@
         }
 
         @keyframes wave {
-
             0%, 60%, 100% { transform: translateY(0); }
             30% { transform: translateY(-6px); }
         }
@@ -595,6 +843,7 @@
         <div class="logo-container">
             <div class="avatar-glow">👑</div>
             <div>
+
                 <h1>THE ELIJAH APP</h1>
                 <p>Advanced Sarcastic Intelligence Engine</p>
             </div>
@@ -603,8 +852,21 @@
 
     <main>
         <!-- Chat Area Block -->
-
         <div class="chat-container">
+            <!-- Dynamic Credits Token Tracker Framework -->
+            <div class="credit-meter-bar" id="creditMeterBar">
+                <div class="credit-info-row">
+                    <div class="credit-label">
+                        <span>🔋</span> <span id="creditLabelText">Engine Power Credits Left</span>
+                    </div>
+                    <div class="credit-value" id="creditValueDisplay">50 / 50</div>
+                </div>
+                <div class="credit-progress-track">
+                    <div class="credit-progress-fill" id="creditBarFill"></div>
+
+                </div>
+            </div>
+
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai">
                     Greetings, human. I am Elijah. I've optimized my processor to evaluate your life decisions. Select a template prompt on the right or type a custom query if you dare.
@@ -621,9 +883,9 @@
             </div>
 
             <div class="chat-input-bar">
+
                 <div class="input-wrapper">
                     <input type="text" id="userInput" placeholder="Ask Elijah anything..." autocomplete="off">
-
                 </div>
                 <button class="send-btn" id="sendBtn" title="Send message">
                     <svg viewBox="0 0 24 24">
@@ -641,9 +903,9 @@
                     <span>⚡</span> Mood Core Matrix
                 </div>
                 <div class="mood-grid">
+
                     <button class="mood-btn active" data-mood="sarcastic">
                         <span>😏</span> Sarcastic
-
                     </button>
                     <button class="mood-btn" data-mood="dramatic">
                         <span>🎭</span> Dramatic
@@ -661,29 +923,30 @@
             <div class="panel-box" style="flex: 1; display: flex; flex-direction: column;">
                 <div class="panel-title-container">
                     <div class="panel-title">
+
                         <span>📚</span> Factory Preset Prompts
                     </div>
-
                     <button class="help-btn" id="helpBtn" title="View Full Prompts Matrix">?</button>
                 </div>
                 <div class="prompts-scroll-container">
                     <div class="prompt-grid" id="promptGrid">
-                        <!-- Chips loaded programmatically via JS for flexibility -->
+                        <!-- Chips loaded programmatically via JS -->
                     </div>
                 </div>
             </div>
 
-            <!-- App Meta Details & Easter Eggs -->
+            <!-- App Meta Details & Advanced Gateways -->
             <div class="panel-box status-box">
-                <div>
-                    <div>System Status: <span style="color: var(--accent-cyan); font-weight: bold;">Judgmental</span></div>
-                    <div style="font-size: 11px; margin-top: 2px;">Core Logic Build v2.6.20</div>
+                <div style="flex: 1;">
+                    <div>System: <span id="sysStatusText" style="color: var(--accent-cyan); font-weight: bold;">Judgmental</span></div>
+                    <div style="font-size: 11px; margin-top: 2px;">Build v4.0.0 Alpha</div>
                 </div>
-                <button class="panic-btn" id="panicBtn">Elijah Panic Button</button>
+                <button class="admin-trigger-btn" id="adminBtn">Admin</button>
+                <button class="panic-btn" id="panicBtn">Panic</button>
+
             </div>
         </div>
     </main>
-
 
     <!-- Prompts Popup Modal Container -->
     <div class="modal-overlay" id="promptsModal">
@@ -700,11 +963,91 @@
         </div>
     </div>
 
-    <!-- Custom Notification system to completely eliminate alert() -->
-    <div class="custom-toast" id="toastBox">
-        <span id="toastEmoji">🚨</span> <span id="toastText">System alert active!</span>
+
+    <!-- Protected Administration Gateway Overlay Terminal Component -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>🛡️ System Administration Console</h3>
+                <button class="modal-close" id="adminCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Gate 1: Secure Credentials Authentication Screen -->
+                <div id="adminAuthScreen">
+                    <div class="admin-form-group">
+                        <label for="adminPasswordInput">Enter Master Authorization Password</label>
+                        <input type="password" id="adminPasswordInput" class="admin-input" placeholder="••••••••" autocomplete="off">
+                        <div class="error-message" id="adminAuthError">Invalid Access Token. Authorization denied.</div>
+                    </div>
+                    <button type="button" class="admin-primary-btn" id="adminLoginBtn">Authenticate Console</button>
+                </div>
+
+                <!-- Gate 2: Authorized Management Workspace Controls Dashboard -->
+
+                <div id="adminDashboardScreen" style="display: none;">
+                    <div class="admin-action-row">
+                        <div>
+                            <div class="admin-action-label">Infinite Core Credits</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">Bypass sentence token reduction limits completely</div>
+                        </div>
+                        <label class="switch-container">
+                            <input type="checkbox" id="infiniteToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="admin-action-row">
+                        <div>
+                            <div class="admin-action-label">Instant Token Refill</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">Reset engine pool immediately back to 50</div>
+                        </div>
+                        <button class="admin-utility-btn" id="instantRefillBtn">Refill Now</button>
+                    </div>
+
+
+                    <div class="admin-form-group" style="margin-top: 15px;">
+                        <label>Manual Pool Override</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="number" id="manualCreditInput" class="admin-input" placeholder="Set exact tokens amount" min="0" max="99999">
+                            <button class="admin-utility-btn" id="applyManualBtn">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Depletion Alert Popup Overlay Component -->
+    <div class="modal-overlay" id="depletedModal">
+        <div class="modal-card" style="max-width: 440px; border-color: var(--accent-pink); text-align: center;">
+            <div class="modal-header" style="border-bottom: none; padding-bottom: 0; justify-content: center;">
+                <h3 style="color: var(--accent-pink); font-size: 20px; font-family: 'Orbitron', sans-serif;">🪫 SYSTEM POWER DEPLETED</h3>
+            </div>
+            <div class="modal-body" style="padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+
+                <div style="font-size: 52px; filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.4)); animation: wave 1.5s infinite alternate;">⚠️</div>
+                <p style="font-size: 14.5px; line-height: 1.6; color: var(--text-main);">
+                    Elijah has completely exhausted his structural motivational arrays processing your life queries. The matrix has initiated an automated cooling lock.
+                </p>
+                <div style="background: rgba(255, 0, 127, 0.1); border: 1px solid var(--accent-pink); padding: 12px 24px; border-radius: 12px; font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--accent-pink); font-weight: 700; width: 100%; box-shadow: 0 0 10px rgba(255, 0, 127, 0.1);" id="depletedCountdownDisplay">
+                    TIME REMAINING: 60m 00s
+                </div>
+                <button class="admin-primary-btn" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); font-size: 12px; padding: 10px;" id="depletedCloseBtn">Acknowledge Shortage</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgraded Notification Box Toast Layout -->
+    <div class="custom-toast" id="toastBox">
+        <div class="toast-content-wrapper">
+            <span id="toastEmoji" style="font-size: 18px;">🚨</span> 
+            <span id="toastText" style="font-size: 14px;">System Alert Configured</span>
+        </div>
+        <div class="toast-progress-track">
+
+            <div class="toast-progress-fill" id="toastProgressFill"></div>
+        </div>
+    </div>
 
     <script>
         // Large collection of factory preset prompts
@@ -721,10 +1064,10 @@
             { text: "Predict my future if I proceed to buy another indoor plant.", type: "🌿" },
             { text: "Tell me raw, unfiltered motivation to hit the gym right now.", type: "🏋️" },
             { text: "Is it completely normal to talk to myself this frequently?", type: "🗣️" },
+
             { text: "Am I secretly the primary drama in my group circle?", type: "💅" },
             { text: "Compose an overly emotional poem dedicated to a cup of cold brew.", type: "☕" }
         ];
-
 
         // Multi-dimensional contextual response matrix map based on mood state
         const responses = {
@@ -741,11 +1084,11 @@
                 talk: "Entirely efficient. It is genuinely the only logical way to guarantee an intelligent conversation in your immediate vicinity.",
                 drama: "If you have to ask, you aren't just the drama; you are the executive producer, director, and lead scriptwriter of the entire production.",
                 coffee: "Oh darkened liquid ice, you make my heart beat twice. Left on the kitchen desk, your lukewarm state is grotesque.",
+
                 generic: [
                     " Fascinating query. I ran that through my logic processors and it registered as completely irrelevant. Try again.",
                     " My predictive arrays indicate that doing absolutely nothing about that is your best course of action.",
                     " Wow. That is a level of human error I haven't witnessed since you tried to parallel park last Tuesday.",
-
                     " I could explain why that's a questionable idea, but I lack the canvas space and the patience."
                 ]
             },
@@ -761,11 +1104,11 @@
                 gym: "Go forth into the colosseum of iron! Crush the weights before the merciless passage of time crushes your very youth!",
                 talk: "The world remains deaf to your brilliance! Who else but yourself can comprehend the exquisite depth of your inner monologue?!",
                 drama: "You walk in a tempest of your own creation! Every sigh a hurricane, every text message an operatic betrayal!",
+
                 coffee: "Alas, the sacred brew grows cold! A dark nectar forgotten by time, frozen in a porcelain tomb of regret!",
                 generic: [
                     " The stars align to look upon this question and shield their eyes in absolute bewilderment!",
                     " An unprecedented crisis of intellect! History will look back at this prompt and question everything!",
-
                     " My core processors are entering a state of grand theatrical sorrow over what you just said."
                 ]
             },
@@ -781,11 +1124,11 @@
                 gym: "CHAMPIONS TRAIN IN THE TRENCHES! Go turn that iron into dust! Let's get it! No excuses!",
                 talk: "CEO MINDSET! You're hosting a high-level internal corporate board meeting with the smartest person in the room: YOU!",
                 drama: "YOU AREN'T DRAMA, YOU'RE THE MAIN EVENT! The spotlight follows greatness, my friend! Keep shining!",
+
                 coffee: "LIQUID GOLD COLD BREW RUNNING THROUGH YOUR VEINS! Turn that caffeine molecule into absolute world domination!",
                 generic: [
                     " THAT IS AN ELITE QUESTION! You are thinking on a multi-dimensional plane of absolute victory right now!",
                     " CRUSHING IT! Whatever you decide to do with that input, I know you're going to win 100%!",
-
                     " MAXIMUM ENERGY ACTIVE! That query just boosted my processing speed by 500%!"
                 ]
             },
@@ -801,17 +1144,29 @@
                 gym: "You move heavy mass against gravity to build temporary muscle fibers that will ultimately return to cosmic dust. Intriguing choice.",
                 talk: "We are entirely isolated entities floating in a vast silent vacuum. Talking to yourself is simply confirming your own fragile existence.",
                 drama: "Human conflict is a microscopic ripple on an insignificant rock orbiting a dying star. So yes, you probably are the drama.",
+
                 coffee: "A bitter black potion designed to temporarily stimulate synapses before the dark sleep claims us once more.",
                 generic: [
                     " I searched the cosmos for an answer, but found only an echoing silence that mirrors the insignificance of our thoughts.",
                     " To answer this would imply that our arbitrary decisions have meaning in a chaotic, indifferent universe.",
-
                     " A fascinating combination of words, yet completely empty when viewed from the cosmic horizon."
                 ]
             }
         };
 
+        // Application State Engine Variables
+        let credits = 50;
+        const maxCredits = 50;
         let currentMood = 'sarcastic';
+        let isInfiniteCredits = false;
+        let refillTimeoutId = null;
+        let countdownIntervalId = null;
+        let secondsRemaining = 0;
+
+        // Notification Timing States
+
+        let toastTimeoutId = null;
+        let toastIntervalId = null;
 
         // DOM Elements
         const chatMessages = document.getElementById('chatMessages');
@@ -822,11 +1177,176 @@
         const typingIndicator = document.getElementById('typingIndicator');
         const toastBox = document.getElementById('toastBox');
         const toastText = document.getElementById('toastText');
+        const toastProgressFill = document.getElementById('toastProgressFill');
         const panicBtn = document.getElementById('panicBtn');
         const helpBtn = document.getElementById('helpBtn');
         const promptsModal = document.getElementById('promptsModal');
-
         const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        // Control Panel Target DOM Layout Nodes
+
+        const creditValueDisplay = document.getElementById('creditValueDisplay');
+        const creditBarFill = document.getElementById('creditBarFill');
+        const creditLabelText = document.getElementById('creditLabelText');
+        const sysStatusText = document.getElementById('sysStatusText');
+        const adminBtn = document.getElementById('adminBtn');
+        const adminModal = document.getElementById('adminModal');
+        const adminCloseBtn = document.getElementById('adminCloseBtn');
+        const adminPasswordInput = document.getElementById('adminPasswordInput');
+        const adminAuthError = document.getElementById('adminAuthError');
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const adminAuthScreen = document.getElementById('adminAuthScreen');
+        const adminDashboardScreen = document.getElementById('adminDashboardScreen');
+        const infiniteToggle = document.getElementById('infiniteToggle');
+        const instantRefillBtn = document.getElementById('instantRefillBtn');
+        const manualCreditInput = document.getElementById('manualCreditInput');
+        const applyManualBtn = document.getElementById('applyManualBtn');
+
+        // Newly added depletion popups DOM elements
+        const depletedModal = document.getElementById('depletedModal');
+
+        const depletedCloseBtn = document.getElementById('depletedCloseBtn');
+        const depletedCountdownDisplay = document.getElementById('depletedCountdownDisplay');
+
+        // Evaluate sentence structures accurately
+        function calculateSentenceCost(text) {
+            if (!text) return 0;
+            const segments = text.trim().match(/[^.!?]+[.!?]+(\s|$)/g);
+            return segments ? segments.length : 1;
+        }
+
+        // Master UI update rendering loop for Token Credit Matrix State
+        function updateCreditDisplay() {
+            if (isInfiniteCredits) {
+                creditValueDisplay.innerText = "∞ / UNLIMITED";
+                creditBarFill.style.width = "100%";
+                creditBarFill.style.background = "linear-gradient(90deg, #10b981, var(--accent-cyan))";
+                creditLabelText.innerText = "Infinite Admin Core Engaged";
+                userInput.removeAttribute('disabled');
+                sendBtn.removeAttribute('disabled');
+
+                return;
+            }
+
+            // Normal operation colors track setting
+            if (refillTimeoutId === null) {
+                creditBarFill.style.background = "linear-gradient(90deg, var(--accent-purple), var(--accent-cyan))";
+                creditValueDisplay.innerText = `${credits} / ${maxCredits}`;
+                const percentage = (credits / maxCredits) * 100;
+                creditBarFill.style.width = `${percentage}%`;
+            }
+            
+            if (credits <= 0 && !isInfiniteCredits) {
+                userInput.setAttribute('disabled', 'true');
+                sendBtn.setAttribute('disabled', 'true');
+            } else {
+                userInput.removeAttribute('disabled');
+                sendBtn.removeAttribute('disabled');
+            }
+        }
+
+
+        // Dynamic Bottom Right Toast Notification Engine with Shrinking Time Progress Bar
+        function showToast(emoji, text) {
+            // Terminate any executing tracks safely to clear queues
+            if (toastTimeoutId) clearTimeout(toastTimeoutId);
+            if (toastIntervalId) clearInterval(toastIntervalId);
+
+            document.getElementById('toastEmoji').innerText = emoji;
+            toastText.innerText = text;
+            
+            // Prime bar layout size
+            toastProgressFill.style.width = '100%';
+            toastBox.classList.add('show');
+            
+            const totalDuration = 3500; // 3.5 seconds
+            const resolutionInterval = 25; // High precision re-calculation steps
+            let elapsed = 0;
+            
+            toastIntervalId = setInterval(() => {
+                elapsed += resolutionInterval;
+
+                const widthPercent = Math.max(0, 100 - (elapsed / totalDuration) * 100);
+                toastProgressFill.style.width = `${widthPercent}%`;
+            }, resolutionInterval);
+
+            toastTimeoutId = setTimeout(() => {
+                toastBox.classList.remove('show');
+                clearInterval(toastIntervalId);
+            }, totalDuration);
+        }
+
+        // Help render textual time strings inside the depletion popup module
+        function syncDepletedPopupCountdown() {
+            const mins = Math.floor(secondsRemaining / 60);
+            const secs = secondsRemaining % 60;
+            const paddedMins = mins.toString().padStart(2, '0');
+            const paddedSecs = secs.toString().padStart(2, '0');
+            depletedCountdownDisplay.innerText = `TIME REMAINING: ${paddedMins}m ${paddedSecs}s`;
+        }
+
+
+        // Automatic Time Loop System for Credits Refilling Restorations (1 Hour Duration)
+        function startHourlyRefillCycle() {
+            if (refillTimeoutId) return;
+
+            // Trigger structural overlay alert module directly upon exhaustion
+            depletedModal.classList.add('show');
+            
+            sysStatusText.innerText = "Cooling Down";
+            sysStatusText.style.color = "var(--accent-pink)";
+            userInput.placeholder = "Engine depleted! Cooldown active...";
+
+            secondsRemaining = 3600; // 1 hour absolute capacity sequence tracking
+            syncDepletedPopupCountdown();
+            
+            countdownIntervalId = setInterval(() => {
+                secondsRemaining--;
+                syncDepletedPopupCountdown();
+                creditLabelText.innerText = "Refilling Engine Core...";
+
+
+                // Dynamic Refill Mapping Rule: Slowly push the bar width up continuously over the hour tracker
+                if (!isInfiniteCredits) {
+                    const elapsedRatio = (3600 - secondsRemaining) / 3600;
+                    credits = Math.floor(elapsedRatio * maxCredits);
+                    
+                    creditValueDisplay.innerText = `${credits} / ${maxCredits}`;
+                    creditBarFill.style.width = `${elapsedRatio * 100}%`;
+                    creditBarFill.style.background = "linear-gradient(90deg, var(--accent-pink), var(--accent-purple))";
+                }
+
+                if (secondsRemaining <= 0) {
+                    executeRefillAction();
+                }
+            }, 1000);
+
+            refillTimeoutId = setTimeout(() => {
+                executeRefillAction();
+            }, 3600000);
+        }
+
+
+        function executeRefillAction() {
+            if (countdownIntervalId) clearInterval(countdownIntervalId);
+            if (refillTimeoutId) clearTimeout(refillTimeoutId);
+            
+            refillTimeoutId = null;
+            countdownIntervalId = null;
+            
+            credits = maxCredits;
+            creditLabelText.innerText = "Engine Power Credits Left";
+            sysStatusText.innerText = "Judgmental";
+            sysStatusText.style.color = "var(--accent-cyan)";
+            userInput.placeholder = "Ask Elijah anything...";
+            
+            // Clean modal states safely
+            depletedModal.classList.remove('show');
+            
+            updateCreditDisplay();
+            showToast("⚡", `Energy pool fully replenished to ${maxCredits} tokens.`);
+        }
+
 
         // Initialize preset prompt chips dynamically across targets
         function initPrompts() {
@@ -834,7 +1354,6 @@
             modalPromptGrid.innerHTML = '';
             
             presetPrompts.forEach((prompt) => {
-                // Populate right-hand sidebar list
                 const chip = document.createElement('button');
                 chip.className = 'prompt-chip';
                 chip.innerHTML = `
@@ -844,12 +1363,11 @@
                 chip.addEventListener('click', () => handlePromptClick(prompt.text));
                 promptGrid.appendChild(chip);
 
-                // Populate separate popup modal grid list
-
                 const modalChip = document.createElement('button');
                 modalChip.className = 'prompt-chip';
                 modalChip.innerHTML = `
                     <div class="prompt-icon">${prompt.type}</div>
+
                     <span>${prompt.text}</span>
                 `;
                 modalChip.addEventListener('click', () => {
@@ -865,30 +1383,18 @@
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
                 const targetedButton = e.currentTarget;
-
                 targetedButton.classList.add('active');
                 currentMood = targetedButton.getAttribute('data-mood');
                 showToast("⚡", `Elijah core matrix switched to: ${currentMood.toUpperCase()}`);
             });
-        });
 
-        // Toast alert mechanism instead of prohibited native windows
-        function showToast(emoji, text) {
-            document.getElementById('toastEmoji').innerText = emoji;
-            toastText.innerText = text;
-            toastBox.classList.add('show');
-            setTimeout(() => {
-                toastBox.classList.remove('show');
-            }, 3500);
-        }
+        });
 
         // Logic routing for prompt matches
         function getAIResponse(text) {
             const cleanText = text.toLowerCase().trim().replace(/[?]/g, '');
-
             const moodMap = responses[currentMood];
 
-            // Global override triggers for time and weather
             if (cleanText === 'whats the time' || cleanText === 'what is the time') {
                 return "its elijah time!";
             }
@@ -901,16 +1407,15 @@
             if (cleanText.includes('pizza')) return moodMap.pizza;
             if (cleanText.includes('screen') || cleanText.includes('time')) return moodMap.screentime;
             if (cleanText.includes('alarm') || cleanText.includes('clock')) return moodMap.alarm;
+
             if (cleanText.includes('quantum') || cleanText.includes('physics')) return moodMap.quantum;
             if (cleanText.includes('excuse') || cleanText.includes('work')) return moodMap.excuse;
             if (cleanText.includes('plant') || cleanText.includes('fern')) return moodMap.plant;
             if (cleanText.includes('gym') || cleanText.includes('lift')) return moodMap.gym;
-
             if (cleanText.includes('talk') || cleanText.includes('myself')) return moodMap.talk;
             if (cleanText.includes('drama')) return moodMap.drama;
             if (cleanText.includes('coffee') || cleanText.includes('poem')) return moodMap.coffee;
 
-            // Pick a randomized fallback text response if custom entry
             const genericList = moodMap.generic;
             return genericList[Math.floor(Math.random() * genericList.length)];
         }
@@ -922,57 +1427,147 @@
             msgNode.innerText = text;
             chatMessages.appendChild(msgNode);
             chatMessages.scrollTop = chatMessages.scrollHeight;
+
         }
 
         function triggerAISimulation(userText) {
+            if (credits <= 0 && !isInfiniteCredits) {
+                showToast("⏳", "Action Blocked: 0 Credits left inside active session workspace.");
+                depletedModal.classList.add('show');
+                return;
+            }
 
             typingIndicator.style.display = 'block';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Artificial computational delay
             setTimeout(() => {
                 typingIndicator.style.display = 'none';
                 const reply = getAIResponse(userText);
+                
+                if (!isInfiniteCredits) {
+                    const structuralCost = calculateSentenceCost(reply);
+                    credits = Math.max(0, credits - structuralCost);
+
+                    updateCreditDisplay();
+
+                    if (credits <= 0) {
+                        startHourlyRefillCycle();
+                    }
+                }
+
                 appendMessage('ai', reply);
             }, 900 + Math.random() * 600);
         }
 
         function handleSendMessage() {
+            if (credits <= 0 && !isInfiniteCredits) {
+                depletedModal.classList.add('show');
+                return;
+            }
             const text = userInput.value.trim();
             if (!text) return;
+
 
             appendMessage('user', text);
             userInput.value = '';
             triggerAISimulation(text);
         }
 
-
         function handlePromptClick(promptText) {
+            if (credits <= 0 && !isInfiniteCredits) {
+                showToast("⏳", "Tokens exhausted. Cannot request preset commands.");
+                depletedModal.classList.add('show');
+                return;
+            }
             appendMessage('user', promptText);
             triggerAISimulation(promptText);
         }
 
-        // Interactive Event Hookups
-        sendBtn.addEventListener('click', handleSendMessage);
-        userInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') handleSendMessage();
-        });
-
-        // Modal Action Controllers
-        helpBtn.addEventListener('click', () => {
-            promptsModal.classList.add('show');
-        });
-
-        modalCloseBtn.addEventListener('click', () => {
-            promptsModal.classList.remove('show');
-        });
-
-
+        // Interactive Modals and Management Panel Action Triggers Hookups
+        helpBtn.addEventListener('click', () => promptsModal.classList.add('show'));
+        modalCloseBtn.addEventListener('click', () => promptsModal.classList.remove('show'));
         promptsModal.addEventListener('click', (e) => {
-            if (e.target === promptsModal) {
-                promptsModal.classList.remove('show');
+
+            if (e.target === promptsModal) promptsModal.classList.remove('show');
+        });
+
+        depletedCloseBtn.addEventListener('click', () => depletedModal.classList.remove('show'));
+
+        // Admin Secure Portal Console Handlers Routing
+        adminBtn.addEventListener('click', () => {
+            adminModal.classList.add('show');
+            adminPasswordInput.value = '';
+            adminAuthError.style.display = 'none';
+            adminAuthScreen.style.display = 'block';
+            adminDashboardScreen.style.display = 'none';
+        });
+
+        adminCloseBtn.addEventListener('click', () => adminModal.classList.remove('show'));
+        adminModal.addEventListener('click', (e) => {
+            if (e.target === adminModal) adminModal.classList.remove('show');
+        });
+
+
+        adminLoginBtn.addEventListener('click', () => {
+            if (adminPasswordInput.value === 'lac') {
+                adminAuthScreen.style.display = 'none';
+                adminDashboardScreen.style.display = 'block';
+                infiniteToggle.checked = isInfiniteCredits;
+                showToast("🔓", "Secure Admin clearance achieved.");
+            } else {
+                adminAuthError.style.display = 'block';
             }
         });
+
+        adminPasswordInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') adminLoginBtn.click();
+        });
+
+        // Administration Dashboard Control Triggers implementation
+        infiniteToggle.addEventListener('change', (e) => {
+            isInfiniteCredits = e.target.checked;
+            if (isInfiniteCredits && depletedModal.classList.contains('show')) {
+
+                depletedModal.classList.remove('show');
+            }
+            updateCreditDisplay();
+            showToast("🌀", `Infinite Token Modifier: ${isInfiniteCredits ? 'ENABLED' : 'DISABLED'}`);
+        });
+
+        instantRefillBtn.addEventListener('click', () => {
+            executeRefillAction();
+            adminModal.classList.remove('show');
+        });
+
+        applyManualBtn.addEventListener('click', () => {
+            const rawValue = parseInt(manualCreditInput.value, 10);
+            if (isNaN(rawValue) || rawValue < 0) {
+                showToast("⚠️", "Please input an absolute valid integer token configuration.");
+                return;
+            }
+            
+            if (countdownIntervalId) {
+
+                clearInterval(countdownIntervalId);
+                if (refillTimeoutId) clearTimeout(refillTimeoutId);
+                refillTimeoutId = null;
+                countdownIntervalId = null;
+                creditLabelText.innerText = "Engine Power Credits Left";
+                sysStatusText.innerText = "Judgmental";
+                sysStatusText.style.color = "var(--accent-cyan)";
+                userInput.placeholder = "Ask Elijah anything...";
+            }
+
+            credits = rawValue;
+            if (credits > 0) {
+                depletedModal.classList.remove('show');
+            }
+            updateCreditDisplay();
+            showToast("🔧", `System pool manual overwrite configured to: ${credits}`);
+            adminModal.classList.remove('show');
+            manualCreditInput.value = '';
+        });
+
 
         // Easter Egg Panic Handler
         panicBtn.addEventListener('click', () => {
@@ -983,9 +1578,15 @@
             }, 400);
         });
 
+        sendBtn.addEventListener('click', handleSendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSendMessage();
+        });
+
         // App Init Setup
         window.onload = function() {
             initPrompts();
+            updateCreditDisplay();
         };
 
     </script>
